@@ -1,7 +1,10 @@
+# From: https://docs.microsoft.com/en-us/rest/api/eventhub/generate-sas-token#powershell
+
 [Reflection.Assembly]::LoadWithPartialName("System.Web")| out-null
 $URI="[YOUR_EVENTHUB_NAMESPACE].servicebus.windows.net/vmlogs"
 $Access_Policy_Name="RootManageSharedAccessKey"
 $Access_Policy_Key="[YOUR_PUBLIC_KEY]"
+
 #Token expires now+300
 $Expires=([DateTimeOffset]::Now.ToUnixTimeSeconds())+31536000
 $SignatureString=[System.Web.HttpUtility]::UrlEncode($URI)+ "`n" + [string]$Expires
