@@ -1,0 +1,23 @@
+{
+    "folders": [
+      {
+        "name": "processor",
+        "path": "processor"
+      },
+      {
+        "name": "forwarder-js",
+        "path": "forwarder-js"
+      },
+      {
+        "name": "forwarder-py",
+        "path": "forwarder-py"
+      },
+      {
+        "name": "scripts",
+        "path": "scripts"
+      }
+    ],
+    "settings": {
+      "debug.internalConsoleOptions": "neverOpen"
+    }
+}

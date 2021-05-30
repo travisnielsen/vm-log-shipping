@@ -1,0 +1,17 @@
+{
+    "storageAccountName": "[YOUR_STORAGE_ACCOUNT_NAME]",
+    "storageAccountSasToken": "[YOUR_SAS_TOKEN]",
+    "sinksConfig": {
+      "sink": [
+        {
+          "name": "FilelogJsonBlob",
+          "type": "JsonBlob"
+        },
+        {
+          "name": "LoggingEventHub",
+          "type": "EventHub",
+          "sasURL": "[ use 'eventHubSas.ps1' to generate value for the Event Hub sasURL ]"
+        }
+      ]
+    }
+}
