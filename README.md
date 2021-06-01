@@ -1,5 +1,10 @@
-# Log Shipping to Event Hub with rsyslog
+# Log Streaming to Event Hub with rsyslog
 
+This is a proof-of-concept design that forwards application logs to Azure Event Hub using `rsyslog`, a common log service found in most Linux distributions.
+
+<img src="media/img/logshipping-design.png" />
+
+The following sections describe the configuration details.
 
 ## Event Hub
 

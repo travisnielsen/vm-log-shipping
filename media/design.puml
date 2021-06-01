@@ -1,0 +1,55 @@
+@startuml logshipping-design
+
+!define AzurePuml https://raw.githubusercontent.com/travisnielsen/Azure-PlantUML/release/3-0/dist
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Compute/FunctionApps.puml
+!includeurl AzurePuml/Compute/VirtualMachine.puml
+!includeurl AzurePuml/Integration/EventHubs.puml
+
+LAYOUT_LEFT_RIGHT
+
+' title Applicaiton Log Streaming
+
+skinparam BackgroundColor #002b36
+skinparam TitleFontColor #eee8d5
+skinparam TitleFontSize 35
+
+skinparam rectangle<<container>> {
+    BackgroundColor<<VirtualMachine>> #eee8d5
+    FontColor<<VirtualMachine>> #002b36
+    BackgroundColor<<EventHubs>> #eee8d5
+    FontColor<<EventHubs>> #002b36
+    BackgroundColor<<FunctionApps>> #eee8d5
+    FontColor<<FunctionApps>> #002b36
+
+    BackgroundColor #268bd2
+    FontColor #fdf6e3
+}
+
+skinparam package<<container>> {
+    StereotypeFontColor<<VirtualNetworks>> #eee8d5
+}
+
+VirtualMachine(appServer, "App Server", "on-premises VM") {
+    Container(appServer_syslog, "rsyslog", "module: imfile")
+    ContainerDb(appLogFile, "Application Log", "access log")
+}
+
+VirtualMachine(collectorServer, "Log Collector", "Azure VM") {
+    Container(collectionServer_syslog, "rsyslog", "module: omprog")
+    Container(node, "Node JS", "Azure Event Hub SDK", "")
+}
+
+EventHubs(eh, "Event Stream", "vmlogs")
+FunctionApps(function, "Log Processor", "ReceiveEvents")
+
+appLogFile -[#268bd2]-> appServer_syslog: "<color:#268bd2>/var/log/app.log"
+appServer_syslog -[#dc322f]-> collectionServer_syslog: "<color:#dc322f>tcp:50514"
+collectionServer_syslog -[#268bd2]-> node: "<color:#268bd2>stdin"
+node -[#859900]-> eh: "<color:#859900>AMQP"
+function <--[#859900]- eh: "<color:#859900>AMQP"
+' eh -[#859900]-> function: "<color:#859900>AMQP"
+
+@end
