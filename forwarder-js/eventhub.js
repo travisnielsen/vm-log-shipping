@@ -1,5 +1,7 @@
-import { EventHubProducerClient } from "@azure/event-hubs";
-import * as readLine from "readline";
+#!/usr/bin/nodejs
+
+const { EventHubProducerClient } = require("@azure/event-hubs");
+const readLine = require('readline');
 
 const connectionString = "";
 const eventHubName = "vmlogs";

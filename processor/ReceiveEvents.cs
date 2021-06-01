@@ -6,11 +6,19 @@ namespace EventProcessor
 {
     public static class ReceiveEvents
     {
+
         [Function("ReceiveEvents")]
-        public static void Run([EventHubTrigger("samples-workitems", Connection = "")] string[] input, FunctionContext context)
+        public static void Run([EventHubTrigger("vmlogs", Connection = "EventHubConnectionString")] string[] input, FunctionContext context)
         {
             var logger = context.GetLogger("ReceiveEvents");
-            logger.LogInformation($"First Event Hubs triggered message: {input[0]}");
+
+            foreach (string message in input)
+            {
+                if (message.Contains("nginx:"))
+                    logger.LogWarning(message);
+                else
+                    logger.LogInformation(message);
+            }
         }
     }
 }
