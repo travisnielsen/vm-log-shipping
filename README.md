@@ -44,12 +44,6 @@ curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Install script dependencies for Event Hub:
-
-```bash
-sudo -H pip3 install azure-eventhub
-```
-
  Run the following script to deploy `forwarder.js` and `41-az_eventhub.conf`.
 
 ```bash
