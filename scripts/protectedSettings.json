@@ -4,14 +4,10 @@
     "sinksConfig": {
       "sink": [
         {
-          "name": "FilelogJsonBlob",
-          "type": "JsonBlob"
-        },
-        {
           "name": "LoggingEventHub",
           "type": "EventHub",
           "sasURL": "[ use 'eventHubSas.ps1' to generate value for the Event Hub sasURL ]"
         }
       ]
     }
-}
+} 

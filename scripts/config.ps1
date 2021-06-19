@@ -22,7 +22,7 @@ $publicSettings = (Invoke-WebRequest -Uri https://raw.githubusercontent.com/Azur
 $publicSettings = $publicSettings.Replace('__DIAGNOSTIC_STORAGE_ACCOUNT__', $storageAccountName)
 $publicSettings = $publicSettings.Replace('__VM_RESOURCE_ID__', $vm.Id)
 
-$publicSettings = Get-Content '.\scripts\publicSettings.json' | Out-String
+$publicSettings = Get-Content 'publicSettings.json' | Out-String
 
 # If you have your own customized public settings, you can inline those rather than using the preceding template: $publicSettings = '{"ladCfg":  { ... },}'
 
@@ -31,7 +31,7 @@ $sasTokenStorage = New-AzStorageAccountSASToken -Service Blob,Table -ResourceTyp
 
 # Build the protected settings (storage account SAS token)
 # $protectedSettings="{'storageAccountName': '$storageAccountName', 'storageAccountSasToken': '$sasTokenStorage'}"
-$protectedSettings = Get-Content '.\scripts\protectedSettings.json' | Out-String
+$protectedSettings = Get-Content 'protectedSettings.json' | Out-String
 
 # Finally, install the extension with the settings you built
 # Set-AzVMExtension -ResourceGroupName $VMresourceGroup -VMName $vmName -Location $vm.Location -ExtensionType LinuxDiagnostic -Publisher Microsoft.Azure.Diagnostics -Name LinuxDiagnostic -SettingString $publicSettings -ProtectedSettingString $protectedSettings -TypeHandlerVersion 4.0
