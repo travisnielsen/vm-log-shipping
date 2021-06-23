@@ -1,12 +1,12 @@
 {
     "storageAccountName": "[YOUR_STORAGE_ACCOUNT_NAME]",
-    "storageAccountSasToken": "[YOUR_SAS_TOKEN]",
+    "storageAccountSasToken": "[STORAGE_SAS_TOKEN]",
     "sinksConfig": {
       "sink": [
         {
           "name": "LoggingEventHub",
           "type": "EventHub",
-          "sasURL": "[ use 'eventHubSas.ps1' to generate value for the Event Hub sasURL ]"
+          "sasURL": "[EVENT_HUB_URL_SAS]"
         }
       ]
     }

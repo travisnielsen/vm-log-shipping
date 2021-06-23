@@ -1,0 +1,5 @@
+# PowerShell Environment File
+scripts/config.json
+
+# VM config JSON files
+scripts/vmconfig/*

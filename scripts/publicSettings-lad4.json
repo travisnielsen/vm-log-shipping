@@ -1,5 +1,5 @@
 {
-  "StorageAccount": "trnieliaas",
+  "StorageAccount": "[STORAGE_ACCT_NAME]",
   "ladCfg": {
       "diagnosticMonitorConfiguration": {
         "eventVolume": "Medium",
@@ -12,7 +12,7 @@
               "scheduledTransferPeriod": "PT1H"
             }
           ],
-          "resourceId": "/subscriptions/cecea5c9-0754-4a7f-b5a9-46ae68dcafd3/resourceGroups/log-shipping/providers/Microsoft.Compute/virtualMachines/trniel-logserver"
+          "resourceId": "[VM_RESOURCE_ID]"
         },
         "performanceCounters": {
           "performanceCounterConfiguration": [
@@ -759,7 +759,6 @@
   "fileLogs": [
     {
         "file": "/var/log/nginx/access.log",
-        "table": "AppLogs",
         "sinks": "LoggingEventHub"
     }
     ]
