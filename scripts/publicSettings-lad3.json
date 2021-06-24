@@ -701,6 +701,7 @@
     "fileLogs": [
         {
             "file": "/var/log/nginx/access.log",
+            "table": "MyLadTestLog",
             "sinks": "LoggingEventHub"
         }
     ]
